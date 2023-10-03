@@ -71,6 +71,11 @@ function startRecord(doAudio = false) {
                 recorder = RecordRTC([screen, audio], {
                     type: 'video/webm;codecs=vp9',
                     mimeType: 'video/webm;codecs=vp9',
+                    frameInterval: screen.getVideoTracks()[0].getSettings().frameRate,
+                    video: {
+                        width: screen.getVideoTracks()[0].getSettings().width,
+                        height: screen.getVideoTracks()[0].getSettings().height
+                    }
                 });
 
                 recorder.startRecording();
@@ -83,7 +88,7 @@ function startRecord(doAudio = false) {
         captureScreen(function (screen) {
             recorder = RecordRTC(screen, {
                 type: 'video/webm;codecs=vp9',
-                mimeType: 'video/webm;codecs=vp9',
+                mimeType: 'video/webm;codecs=vp9'
             });
 
             recorder.startRecording();
